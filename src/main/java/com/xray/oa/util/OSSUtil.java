@@ -13,9 +13,9 @@ public class OSSUtil {
     // Endpoint以杭州为例，其它Region请按实际情况填写。
     private static String endpoint = "http://oss-cn-hangzhou.aliyuncs.com";
     // 云账号AccessKey有所有API访问权限，建议遵循阿里云安全最佳实践，创建并使用RAM子账号进行API访问或日常运维，请登录 https://ram.console.aliyun.com 创建。
-    private static String accessKeyId = "LTAI4G3y4wYEfW2Lz8aha1eT";
-    private static String accessKeySecret = "zxdF3fcCWLrUWnUwZ9QxAgYWDfaHPs";
-    private static String bucketName = "chenheng0611";
+    private static String accessKeyId = "LTAI4GKQ5Ew9F3YqapuwBh7s";
+    private static String accessKeySecret = "YIPDoJgHB0fsgewcl2oqcYTJxl7PaE";
+    private static String bucketName = "xxoasys";
 
     public static void upload(InputStream inputStream,String target){
         // 创建OSSClient实例。
@@ -28,8 +28,8 @@ public class OSSUtil {
     public static String getURL(String objectName){
         // 创建OSSClient实例。
         OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
-        // 设置URL过期时间为1小时。
-        Date expiration = new Date(new Date().getTime() + 3600 * 1000);
+        // 设置URL过期时间为100天。
+        Date expiration = new Date(new Date().getTime() + 3600 * 1000 * 24 * 100);
         // 生成以GET方法访问的签名URL，访客可以直接通过浏览器访问相关内容。
         URL url = ossClient.generatePresignedUrl(bucketName, objectName, expiration);
         // 关闭OSSClient。
