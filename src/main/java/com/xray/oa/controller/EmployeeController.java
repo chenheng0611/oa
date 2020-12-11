@@ -8,11 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -37,7 +33,7 @@ public class EmployeeController {
         try {
             List<Employee> list = employeeService.findAll();
             if(list.isEmpty()){
-                return new ResponseEntity(HttpStatus.NO_CONTENT);
+                return new ResponseEntity(HttpStatus.NOT_FOUND);
             }
             return ResponseEntity.ok(list);
         } catch (Exception e) {
@@ -51,7 +47,7 @@ public class EmployeeController {
         try {
             Page<Employee> page = employeeService.findPage(current);
             if(page.getTotal() == 0){
-                return new ResponseEntity(HttpStatus.NO_CONTENT);
+                return new ResponseEntity(HttpStatus.NOT_FOUND);
             }
             return ResponseEntity.ok(page);
         } catch (Exception e) {
@@ -60,4 +56,36 @@ public class EmployeeController {
         return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    @PostMapping
+    public ResponseEntity saveEmployee(@RequestBody Employee employee){
+        try {
+            employeeService.save(employee);
+            return ResponseEntity.ok(employee);
+        } catch (Exception e) {
+            log.error("exception:",e);
+        }
+        return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @PutMapping
+    public ResponseEntity updateEmployee(Employee employee){
+        try {
+            employeeService.updateById(employee);
+            return ResponseEntity.ok(employee);
+        } catch (Exception e) {
+            log.error("exception:",e);
+        }
+        return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteEmployee(@PathVariable("id")Long id){
+        try {
+            employeeService.removeById(id);
+            return ResponseEntity.ok(id);
+        } catch (Exception e) {
+            log.error("exception:",e);
+        }
+        return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }

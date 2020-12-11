@@ -48,8 +48,8 @@ public class Employee implements Serializable {
     private String picture;
 
     @TableField(exist = false)
-    private Job job;
+    private String job;
 
     @TableField(exist = false)
-    private Department department;
+    private String department;
 }

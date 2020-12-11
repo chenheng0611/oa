@@ -37,8 +37,8 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
         for(Employee employee : list){
             Department dep = departmentService.getById(employee.getDepId());
             Job job = jobService.getById(employee.getJobId());
-            employee.setDepartment(dep);
-            employee.setJob(job);
+            employee.setDepartment(dep.getName());
+            employee.setJob(job.getName());
         }
         return list;
     }
@@ -53,8 +53,8 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
         for(Employee employee : page.getRecords()){
             Department dep = departmentService.getById(employee.getDepId());
             Job job = jobService.getById(employee.getJobId());
-            employee.setDepartment(dep);
-            employee.setJob(job);
+            employee.setDepartment(dep.getName());
+            employee.setJob(job.getName());
         }
         return page;
     }
