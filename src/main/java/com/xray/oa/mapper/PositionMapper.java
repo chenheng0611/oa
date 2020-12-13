@@ -1,6 +1,6 @@
 package com.xray.oa.mapper;
 
-import com.xray.oa.entity.Department;
+import com.xray.oa.entity.Position;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -9,8 +9,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author xray
- * @since 2020-12-08
+ * @since 2020-12-13
  */
-public interface DepartmentMapper extends BaseMapper<Department> {
+public interface PositionMapper extends BaseMapper<Position> {
 
 }

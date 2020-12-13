@@ -1,6 +1,6 @@
 package com.xray.oa.service;
 
-import com.xray.oa.entity.Job;
+import com.xray.oa.entity.Position;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -9,8 +9,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author xray
- * @since 2020-12-08
+ * @since 2020-12-13
  */
-public interface IJobService extends IService<Job> {
+public interface IPositionService extends IService<Position> {
 
 }

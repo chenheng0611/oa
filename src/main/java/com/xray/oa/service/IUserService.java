@@ -1,5 +1,6 @@
 package com.xray.oa.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xray.oa.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -9,8 +10,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author xray
- * @since 2020-12-11
+ * @since 2020-12-13
  */
 public interface IUserService extends IService<User> {
 
+    Page<User> findPage(Long current);
+
+    User login(String username,String password);
 }

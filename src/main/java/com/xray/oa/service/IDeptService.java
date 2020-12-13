@@ -1,6 +1,6 @@
 package com.xray.oa.service;
 
-import com.xray.oa.entity.Department;
+import com.xray.oa.entity.Dept;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -9,8 +9,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author xray
- * @since 2020-12-08
+ * @since 2020-12-13
  */
-public interface IDepartmentService extends IService<Department> {
+public interface IDeptService extends IService<Dept> {
 
 }

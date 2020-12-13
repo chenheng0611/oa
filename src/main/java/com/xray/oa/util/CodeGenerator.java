@@ -18,24 +18,6 @@ import java.util.Scanner;
 // 演示例子，执行 main 方法控制台输入模块表名回车自动生成对应项目目录中
 public class CodeGenerator {
 
-//    /**
-//     * <p>
-//     * 读取控制台内容
-//     * </p>
-//     */
-//    public static String scanner(String tip) {
-//        Scanner scanner = new Scanner(System.in);
-//        StringBuilder help = new StringBuilder();
-//        help.append("请输入" + tip + "：");
-//        System.out.println(help.toString());
-//        if (scanner.hasNext()) {
-//            String ipt = scanner.next();
-//            if (StringUtils.isNotBlank(ipt)) {
-//                return ipt;
-//            }
-//        }
-//        throw new MybatisPlusException("请输入正确的" + tip + "！");
-//    }
 
     public static void main(String[] args) {
         // 代码生成器
@@ -89,21 +71,6 @@ public class CodeGenerator {
                         + "/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
             }
         });
-        /*
-        cfg.setFileCreate(new IFileCreate() {
-            @Override
-            public boolean isCreate(ConfigBuilder configBuilder, FileType fileType, String filePath) {
-                // 判断自定义文件夹是否需要创建
-                checkDir("调用默认方法创建的目录，自定义目录用");
-                if (fileType == FileType.MAPPER) {
-                    // 已经生成 mapper 文件判断存在，不想重新生成返回 false
-                    return !new File(filePath).exists();
-                }
-                // 允许生成模板文件
-                return true;
-            }
-        });
-        */
         cfg.setFileOutConfigList(focList);
         mpg.setCfg(cfg);
 
@@ -129,10 +96,9 @@ public class CodeGenerator {
         // 公共父类
 //        strategy.setSuperControllerClass("你自己的父类控制器,没有就不用设置!");
         // 写于父类中的公共字段
-        strategy.setSuperEntityColumns("id");
-        strategy.setInclude("tb_user".split(","));
+        strategy.setInclude("t_user,t_dept,t_position".split(","));
         strategy.setControllerMappingHyphenStyle(true);
-        strategy.setTablePrefix("tb_");
+        strategy.setTablePrefix("t_");
         mpg.setStrategy(strategy);
         mpg.setTemplateEngine(new FreemarkerTemplateEngine());
         mpg.execute();

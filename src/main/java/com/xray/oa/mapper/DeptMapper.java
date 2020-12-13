@@ -1,6 +1,6 @@
 package com.xray.oa.mapper;
 
-import com.xray.oa.entity.Job;
+import com.xray.oa.entity.Dept;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -9,8 +9,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author xray
- * @since 2020-12-08
+ * @since 2020-12-13
  */
-public interface JobMapper extends BaseMapper<Job> {
+public interface DeptMapper extends BaseMapper<Dept> {
 
 }

@@ -1,7 +1,7 @@
 package com.xray.oa.controller;
 
 
-import com.xray.oa.service.IJobService;
+import com.xray.oa.service.IDeptService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,17 +15,17 @@ import org.springframework.web.bind.annotation.RestController;
  * </p>
  *
  * @author xray
- * @since 2020-12-08
+ * @since 2020-12-13
  */
 @RestController
-@RequestMapping("//job")
-public class JobController {
+@RequestMapping("//dept")
+public class DeptController {
 
     @Autowired
-    private IJobService jobService;
+    private IDeptService deptService;
 
     @GetMapping
     public ResponseEntity findAll(){
-        return ResponseEntity.ok(jobService.list());
+        return ResponseEntity.ok(deptService.list());
     }
 }
