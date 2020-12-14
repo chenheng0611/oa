@@ -6,6 +6,8 @@ import com.aliyun.oss.OSSClientBuilder;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 
 public class OSSUtil {
@@ -29,7 +31,8 @@ public class OSSUtil {
         // 创建OSSClient实例。
         OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
         // 设置URL过期时间为100天。
-        Date expiration = new Date(new Date().getTime() + 3600 * 1000 * 24 * 100);
+        LocalDateTime time = LocalDateTime.now().plusDays(100);
+        Date expiration = Date.from(time.atZone( ZoneId.systemDefault()).toInstant());
         // 生成以GET方法访问的签名URL，访客可以直接通过浏览器访问相关内容。
         URL url = ossClient.generatePresignedUrl(bucketName, objectName, expiration);
         // 关闭OSSClient。
