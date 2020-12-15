@@ -29,7 +29,11 @@ public class UserController {
     @GetMapping("/page/{current}")
     public ResponseEntity findPage(@PathVariable(value = "current",required = false)Long current){
         try {
-            Page<User> page = userService.findPage(current);
+            if(current == null){
+                current = 1L;
+            }
+            Page<User> page = new Page<>(current, 10);
+            page = userService.findPage(page);
             if(page.getTotal() == 0){
                 return new ResponseEntity(HttpStatus.NOT_FOUND);
             }

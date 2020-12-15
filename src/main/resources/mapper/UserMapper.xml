@@ -2,4 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xray.oa.mapper.UserMapper">
 
+    <select id="selectPage" resultType="com.xray.oa.entity.UserVO">
+        select u.*,p.name position_name,d.dept_name from t_user u join t_dept d
+        on u.dept_id = d.dept_id join t_position p on u.position_id = p.position_id
+        order by u.user_id
+    </select>
 </mapper>

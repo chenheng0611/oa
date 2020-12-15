@@ -24,26 +24,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
 
-    @Autowired
-    private IDeptService deptService;
 
     @Autowired
-    private IPositionService positionService;
+    private UserMapper userMapper;
 
     @Override
-    public Page<User> findPage(Long current) {
-        if(current == null){
-            current = 1L;
-        }
-        Page<User> pageArg = new Page<>(current, 10);
-        Page<User> result = this.page(pageArg);
-        for(User user : result.getRecords()){
-            Dept dept = deptService.getById(user.getDeptId());
-            Position position = positionService.getById(user.getPositionId());
-            user.setDeptName(dept.getDeptName());
-            user.setPositionName(position.getName());
-        }
-        return result;
+    public Page<User> findPage(Page<User> page) {
+        return userMapper.selectPage(page);
     }
 
     @Override

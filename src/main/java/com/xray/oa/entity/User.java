@@ -89,9 +89,4 @@ public class User implements Serializable {
 
     private String pinyin;
 
-    @TableField(exist = false)
-    private String deptName;
-
-    @TableField(exist = false)
-    private String positionName;
 }
