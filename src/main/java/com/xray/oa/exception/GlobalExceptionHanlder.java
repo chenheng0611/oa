@@ -23,6 +23,6 @@ public class GlobalExceptionHanlder {
     @ExceptionHandler(BizException.class)
     public ResponseEntity handleBizException(BizException ex, HttpServletRequest request){
         log.error("BizException ",ex);
-        return ResponseEntity.ok(new JsonResult(ex.getCode(),ex.getMsg(),request.getRequestURL().toString()));
+        return ResponseEntity.ok(new JsonResult(ex.getCode(),ex.getMessage(),request.getRequestURL().toString()));
     }
 }
