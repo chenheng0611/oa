@@ -3,6 +3,7 @@ package com.xray.oa.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xray.oa.entity.User;
+import com.xray.oa.exception.BizException;
 import com.xray.oa.service.IUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,64 +29,42 @@ public class UserController {
 
     @GetMapping("/page/{current}")
     public ResponseEntity findPage(@PathVariable(value = "current",required = false)Long current){
-        try {
-            if(current == null){
-                current = 1L;
-            }
-            Page<User> page = new Page<>(current, 10);
-            page = userService.findPage(page);
-            if(page.getTotal() == 0){
-                return new ResponseEntity(HttpStatus.NOT_FOUND);
-            }
-            return ResponseEntity.ok(page);
-        } catch (Exception e) {
-            log.error("exception:",e);
+        if(current == 9){
+            current = 1L;
         }
-        return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        Page<User> page = new Page<>(current, 10);
+        page = userService.findPage(page);
+        if(page.getRecords().isEmpty()){
+            throw new BizException(404,"找不到员工信息");
+        }
+        return ResponseEntity.ok(page);
     }
     
     @PostMapping("/login")
     public ResponseEntity login(String username,String password){
-        try {
-            User user = userService.login(username, password);
-            return ResponseEntity.ok(user);
-        } catch (Exception e) {
-            log.error("exception:",e);
+        User user = userService.login(username, password);
+        if(user == null){
+            throw new BizException(404,"找不到员工信息");
         }
-        return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        return ResponseEntity.ok(user);
     }
 
 
     @PostMapping
     public ResponseEntity saveUser(@RequestBody User User){
-        try {
-            userService.save(User);
-            return ResponseEntity.ok(User);
-        } catch (Exception e) {
-            log.error("exception:",e);
-        }
-        return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        userService.save(User);
+        return ResponseEntity.ok(User);
     }
 
     @PutMapping
     public ResponseEntity updateUser(User User){
-        try {
-            userService.updateById(User);
-            return ResponseEntity.ok(User);
-        } catch (Exception e) {
-            log.error("exception:",e);
-        }
-        return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        userService.updateById(User);
+        return ResponseEntity.ok(User);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity deleteUser(@PathVariable("id")Long id){
-        try {
-            userService.removeById(id);
-            return ResponseEntity.ok(id);
-        } catch (Exception e) {
-            log.error("exception:",e);
-        }
-        return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        userService.removeById(id);
+        return ResponseEntity.ok(id);
     }
 }

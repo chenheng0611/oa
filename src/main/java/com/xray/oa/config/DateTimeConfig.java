@@ -54,7 +54,7 @@ public class DateTimeConfig {
         return new Converter<String, LocalDate>() {
             @Override
             public LocalDate convert(String source) {
-                return LocalDate.parse(source, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                return LocalDate.parse(source, DateTimeFormatter.ofPattern(DATE_FORMAT));
             }
         };
     }
@@ -64,7 +64,7 @@ public class DateTimeConfig {
         return new Converter<String, LocalDateTime>() {
             @Override
             public LocalDateTime convert(String source) {
-                return LocalDateTime.parse(source, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                return LocalDateTime.parse(source, DateTimeFormatter.ofPattern(DATETIME_FORMAT));
             }
         };
     }
