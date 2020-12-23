@@ -15,8 +15,8 @@ public class OSSUtil {
     // Endpoint以杭州为例，其它Region请按实际情况填写。
     private static String endpoint = "http://oss-cn-hangzhou.aliyuncs.com";
     // 云账号AccessKey有所有API访问权限，建议遵循阿里云安全最佳实践，创建并使用RAM子账号进行API访问或日常运维，请登录 https://ram.console.aliyun.com 创建。
-    private static String accessKeyId = "LTAI4GKQ5Ew9F3YqapuwBh7s";
-    private static String accessKeySecret = "YIPDoJgHB0fsgewcl2oqcYTJxl7PaE";
+    private static String accessKeyId = "LTAI4GKQ5Ew9F3YqapuwBh77";
+    private static String accessKeySecret = "YIPDoJgHB0fsgewcl2oqcYTJxl7Paa";
     private static String bucketName = "xxoasys";
 
     public static void upload(InputStream inputStream,String target){

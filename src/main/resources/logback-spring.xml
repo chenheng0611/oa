@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--每隔10秒，扫描当前配置-->
 <configuration  scan="true" scanPeriod="10 seconds">
     <contextName>logback</contextName>
     <!-- 格式化输出：%date表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度 %msg：日志消息，%n是换行符-->
@@ -33,7 +34,7 @@
             <pattern>${LOG_PATTERN}</pattern>
         </encoder>
     </appender>
-    <!-- project default level -->
+    <!-- 配置日志默认级别 -->
     <logger name="com.xray.oa.exception" level="ERROR" />
     <!-- 日志输出级别 -->
     <root level="INFO">

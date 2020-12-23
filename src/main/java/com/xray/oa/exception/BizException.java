@@ -5,9 +5,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * 业务异常
+ * 自定义业务异常
  */
 @Data
+@NoArgsConstructor
 public class BizException extends RuntimeException {
 
     private Integer code;
@@ -16,13 +17,6 @@ public class BizException extends RuntimeException {
     public BizException(Integer code,String msg) {
         super(msg);
         this.code = code;
-    }
-
-    public BizException(String msg) {
-        super(msg);
-    }
-
-    public BizException() {
-        super("未知业务异常");
+        this.msg = msg;
     }
 }
